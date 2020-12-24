@@ -19,7 +19,7 @@ min_max <- function(vector){
 }
 
 # read in cleaned CRSR ACG CBC data
-CRSR <- read_csv("CRSR-CBC-2019-cleaned.csv")
+CRSR <- read_csv("CRCA-CBC-2019-cleaned.csv")
 
 ## redo with CRSR species
 species_list <- CRSR %>%
@@ -36,7 +36,7 @@ years_list <- CRSR %>%
 year_min_max <- min_max(years_list)
 
 
-ui <- navbarPage("Conteo de Aves ACG- Santa Rosa",
+ui <- navbarPage("Conteo de Aves ACG- Cacao",
                  
                  tabPanel(
                      
