@@ -18,17 +18,17 @@ min_max <- function(vector){
     return(min_max)
 }
 
-# read in cleaned CRSR ACG CBC data
-CRSR <- read_csv("CRCA-CBC-2019-cleaned.csv")
+# read in cleaned CRCA ACG CBC data
+CRCA <- read_csv("CRCA-CBC-2019-cleaned.csv")
 
-## redo with CRSR species
-species_list <- CRSR %>%
+## redo with CRCA species
+species_list <- CRCA %>%
     distinct(species_latin) %>%
     rename(Especies = species_latin) #%>%
     #arrange(Especies) don't sort alphabetically
 
-##redo with CRSR data
-years_list <- CRSR %>%
+##redo with CRCA data
+years_list <- CRCA %>%
     distinct(year) %>%
     rename(Year = year) %>%
     arrange(-Year)
@@ -59,7 +59,7 @@ ui <- navbarPage("Conteo de Aves ACG- Cacao",
                              # Input: which species ----
                              selectizeInput("species_picked",
                                             multiple = TRUE,
-                                            selected = c("Crypturellus cinnamomeus", "Colinus cristatus", "Crax rubra", "Penelope purpurascens"),
+                                            selected = c("Crax rubra", "Penelope purpurascens"),
                                             label = "Puede seleccionar los nombres científicos de la lista o escribirlos (máximo 6):",
                                             choices = species_list,
                                             options = list(maxItems = 6)),
@@ -144,7 +144,7 @@ server <- function(input, output) {
     data_input <- reactive({
         
         #update with ACG variables
-        CRSR %>% 
+        CRCA %>% 
             filter(year >= req(input$years_picked[1]),
                    year <= req(input$years_picked[2]),
                    species_latin %in% req(input$species_picked))
@@ -191,7 +191,7 @@ server <- function(input, output) {
     output$count_table <- renderTable({
         
         ##update with ACG
-        CRSR %>%
+        CRCA %>%
             filter(year == input$individual_year_picked) %>%
             count(species_latin, how_many_counted) %>%
             select(-n) %>%

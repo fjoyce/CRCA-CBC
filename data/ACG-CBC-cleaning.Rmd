@@ -134,12 +134,12 @@ distinct(species)
 
 
 ```{r}
-CRCA_cbc <- CRSR_cbc %>%
+CRCA_cbc <- CRCA_cbc %>%
   filter(!(str_detect(species, "sp\\.")))
 ```
 
 ```{r}
-CRSR_cbc <- CRCA_cbc %>%
+CRCA_cbc <- CRCA_cbc %>%
   mutate(how_many_counted = replace_na(how_many_counted, 0),
          how_many_counted_by_hour = as.double(how_many_counted) / total_hours)
 ```
