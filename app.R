@@ -115,7 +115,7 @@ ui <- navbarPage("Conteo de Aves ACG- Cacao",
                              
                              # Input: which year ----
                              selectInput("individual_year_picked",
-                                         label = "¿Para cuál año quisiera visualizar los resultados del Conteo Navideño de Aves Santa Rosa?",
+                                         label = "¿Para cuál año quisiera visualizar los resultados del Conteo Navideño de Aves Cacao?",
                                          choices = years_list),
                              
                              
