@@ -29,27 +29,16 @@ Download data from here: https://netapp.audubon.org/cbcobservation/historical/re
 Use count code CRCA
 
 Start year = 111 (2010)
-End year = 120 (2019)
+End year = 121 (2020)
 
 CSV, sort Taxonomic
 
 Then, delete non-species count top rows.
 
-ALso delete the rows below for participants...
-
-Rename so that the columns are:
-
-species
-count_year
-how_many_cw	
-number_by_party_hours
-flags
-
-
-
+Also delete the rows below for participants...
 
 ```{r}
-CRCA_cbc <- read_csv(here("data/CRCA-2010-2019_pre-cleaned.csv"))
+CRCA_cbc <- read_csv(here("data/CRCA-2010-2020_pre-cleaned.csv"))
 ```
 
 
@@ -59,6 +48,16 @@ CRCA_cbc %>%
   kable() %>%
   kable_styling(full_width = FALSE, position = "left")
 
+```
+```{r}
+#Rename so that the columns are: species, count_year, how_many_cw, number_by_party_hours, flags
+CRCA_cbc <- CRCA_cbc %>% 
+  rename(species = COM_NAME, 
+         count_year = CountYear, 
+         how_many_cw = how_manyCW,
+         number_by_party_hours = NumberByPartyHours,
+         flags = Flags
+        )
 ```
 
 
@@ -154,6 +153,6 @@ CRCA_cbc %>%
 Move this file manually to the root directory
 
 ```{r}
-write_csv(CRCA_cbc, "CRCA-CBC-2019-cleaned.csv")
+write_csv(CRCA_cbc, "CRCA-CBC-2020-cleaned.csv")
 ```
 
