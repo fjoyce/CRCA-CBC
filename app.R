@@ -19,7 +19,7 @@ min_max <- function(vector){
 }
 
 # read in cleaned CRCA ACG CBC data
-CRCA <- read_csv("CRCA-CBC-2019-cleaned.csv")
+CRCA <- read_csv("CRCA-CBC-2020-cleaned.csv")
 
 ## redo with CRCA species
 species_list <- CRCA %>%
